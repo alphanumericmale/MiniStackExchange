@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ question.title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body>
+    <h1>{{ question.title }}</h1>
+    <p>{{ question.content }}</p>
+    <h2>Submit an Answer</h2>
+    <form method="POST">
+        <label for="content">Content:</label>
+        <textarea name="content" id="content" required></textarea>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+    <a href="{{ url_for('home') }}">Back to Home</a>
+    <h2>Answers</h2>
+    <!-- Add the following table below the "Answers" heading -->
+<table>
+    <thead>
+        <tr>
+            <th>Answer</th>
+            <th>Rating</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for answer in question.answers %}
+            <tr>
+                <td>{{ answer.content }}</td>
+                <td>{{ answer.rating }}</td>
+                <td>
+                    <form action="{{ url_for('rate_answer', question_id=question.id, answer_id=answer.id, delta=1) }}" method="post" style="display: inline;">
+                        <input type="submit" value="+" />
+                    </form>
+                    <form action="{{ url_for('rate_answer', question_id=question.id, answer_id=answer.id, delta=-1) }}" method="post" style="display: inline;">
+                        <input type="submit" value="-" />
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+</body>
+</html>
+
