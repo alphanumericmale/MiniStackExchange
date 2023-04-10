@@ -59,12 +59,14 @@ def rate_answer(question_id, answer_id, delta):
     answer.rating += delta
     db.session.commit()
     return redirect(url_for('view_question', question_id=question_id))
+
 @app.route('/search', methods=['GET'])
 def search_questions():
     query = request.args.get('query')
     search = f'%{query}%'
     questions = Question.query.filter(or_(Question.title.like(search), Question.content.like(search))).all()
     return render_template('home.html', questions=questions)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
