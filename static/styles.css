@@ -56,3 +56,16 @@ input[type="submit"] {
     border: none;
     cursor: pointer;
 }
+
+.clear-search {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #dc3545;
+    color: #fff;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+.clear-search:hover {
+    background-color: #c82333;
+}
