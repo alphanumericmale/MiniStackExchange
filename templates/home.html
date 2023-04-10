@@ -23,6 +23,15 @@
         <br />
         <input type="submit" value="Submit" />
     </form>
+
+    <h2>Search Questions</h2>
+    <form action="{{ url_for('search_questions') }}" method="get">
+        <label for="query">Search:</label>
+        <input type="text" name="query" id="query" required />
+        <input type="submit" value="Search" />
+        <a href="{{ url_for('home') }}" class="clear-search">Clear Search</a>
+    </form>
+
     <h2>Questions</h2>
     <table>
         <thead>
